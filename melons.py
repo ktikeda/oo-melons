@@ -60,8 +60,27 @@ class InternationalMelonOrder(AbstractMelonOrder):
 
         return self.country_code
 
-order1 = DomesticMelonOrder("cantaloupe", 8)
-order0 = InternationalMelonOrder("watermelon", 6, "AUS")
-order2 = InternationalMelonOrder("watermelon", 16, "AUS")
-order3 = DomesticMelonOrder("Christmas melon", 8)
-order4 = InternationalMelonOrder("Christmas melon", 6, "AUS")
+
+class GovernmentMelonOrder(AbstractMelonOrder):
+    """A melon order for the US Government"""
+
+    passed_inspection = False
+    order_type = 'domestic'
+
+    def __init__(self, species, qty, tax=0):
+        self.tax = tax
+
+        return super(GovernmentMelonOrder, self).__init__(species, qty)
+
+    def mark_inspection(self, passed):
+
+        self.passed_inspection = passed
+
+
+order5 = GovernmentMelonOrder('watermelon', 10)
+
+# order1 = DomesticMelonOrder("cantaloupe", 8)
+# order0 = InternationalMelonOrder("watermelon", 6, "AUS")
+# order2 = InternationalMelonOrder("watermelon", 16, "AUS")
+# order3 = DomesticMelonOrder("Christmas melon", 8)
+# order4 = InternationalMelonOrder("Christmas melon", 6, "AUS")
